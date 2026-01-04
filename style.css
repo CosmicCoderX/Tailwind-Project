@@ -1,0 +1,613 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ================================
+   ROOT VARIABLES
+================================ */
+:root {
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-display: Poppins, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ================================
+   BASE STYLES
+================================ */
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #111827;
+  cursor: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  color: #1f2937;
+  font-weight: 500;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ================================
+   CUSTOM CURSOR
+================================ */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #9333ea;
+  border-radius: 9999px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease;
+  contain: layout style paint;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #9333ea;
+  border-radius: 9999px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: all 0.05s ease;
+  contain: layout style paint;
+}
+
+.custom-cursor.hover {
+  width: 40px;
+  height: 40px;
+  background: rgba(147, 51, 234, 0.1);
+  border-color: #c084fc;
+}
+
+a,
+button {
+  cursor: none;
+}
+
+@media (hover: none) {
+
+  .custom-cursor,
+  .cursor-dot {
+    display: none;
+  }
+
+  a,
+  button {
+    cursor: pointer;
+  }
+}
+
+/* ================================
+   NAVBAR
+================================ */
+.nav-blur {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* ================================
+   ANIMATIONS
+================================ */
+@keyframes blob {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+@keyframes floating {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes icon-bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.icon-bounce {
+  animation: icon-bounce 2s ease-in-out infinite;
+}
+
+@keyframes icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-spin {
+  animation: icon-spin 3s linear infinite;
+}
+
+@keyframes icon-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.icon-pulse {
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+
+/* ================================
+   BENTO ITEMS
+================================ */
+.bento-item {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.bento-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  padding: 2px;
+  opacity: 0;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  transition: opacity 0.3s ease;
+}
+
+.bento-item:hover::before {
+  opacity: 1;
+}
+
+.bento-item:hover {
+  transform: translateY(-0.5rem) !important;
+}
+
+/* ================================
+   HOVER EFFECTS
+================================ */
+.gradient-hover {
+  transition: all 0.3s ease;
+}
+
+.gradient-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.scale-hover {
+  transition: transform 0.3s ease;
+}
+
+.scale-hover:hover {
+  transform: scale(1.05);
+}
+
+/* ================================
+   ICON FLOAT - ENHANCED VARIATIONS
+================================ */
+@keyframes icon-float-1 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform: translateY(-12px) rotate(5deg) scale(1.05);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(0deg) scale(1);
+  }
+
+  75% {
+    transform: translateY(-15px) rotate(-5deg) scale(1.05);
+  }
+}
+
+@keyframes icon-float-2 {
+
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+
+  33% {
+    transform: translateY(-10px) translateX(5px) scale(1.08);
+  }
+
+  66% {
+    transform: translateY(-5px) translateX(-5px) scale(0.95);
+  }
+}
+
+@keyframes icon-float-3 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(10deg);
+  }
+}
+
+@keyframes icon-float-4 {
+
+  0%,
+  100% {
+    transform: scale(1) translateY(0px);
+  }
+
+  25% {
+    transform: scale(1.1) translateY(-8px);
+  }
+
+  50% {
+    transform: scale(0.95) translateY(-12px);
+  }
+
+  75% {
+    transform: scale(1.05) translateY(-6px);
+  }
+}
+
+@keyframes icon-swing {
+
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+
+  25% {
+    transform: rotate(15deg) translateY(-10px);
+  }
+
+  75% {
+    transform: rotate(-15deg) translateY(-10px);
+  }
+}
+
+.bento-item i {
+  animation-name: icon-float-1;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  animation-play-state: running;
+  will-change: transform;
+  transform-origin: center;
+}
+
+/* ================================
+   RIPPLE EFFECT
+================================ */
+.ripple {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 9999px;
+  background: rgba(147, 51, 234, 0.3);
+  pointer-events: none;
+  animation: ripple 1s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes ripple {
+  to {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+/* ================================
+   TEXT SHIMMER
+================================ */
+.text-shimmer {
+  background: linear-gradient(90deg, #9333ea, #c084fc, #9333ea);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* ================================
+   SCROLLING LINES (Companies Section - Auto Animation)
+================================ */
+.scroll-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.scroll-content {
+  display: inline-block;
+  animation: scroll-left 40s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: transform;
+}
+
+.scroll-content-reverse {
+  display: inline-block;
+  animation: scroll-right 35s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: transform;
+}
+
+.scroll-container:hover .scroll-content,
+.scroll-container:hover .scroll-content-reverse {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* ================================
+   FEATURE LINE SCROLL (Scroll-Based)
+================================ */
+#line4 {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* ================================
+   FAQ
+================================ */
+.faq-container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.h2-style {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4rem;
+}
+
+.faq-item {
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.faq-item:hover {
+  background-color: #f3f4f6;
+  border-color: #9333ea;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item.active {
+  background-color: white;
+  border-color: #9333ea;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #111827;
+}
+
+.faq-icon {
+  transition: transform 0.3s ease;
+  color: #6b7280;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+  color: #9333ea;
+}
+
+.faq-answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  color: #4b5563;
+  line-height: 1.75;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 1.5rem;
+}
+
+/* ================================
+   APP INSTALLATION SECTION
+================================ */
+.app-installation-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.app-installation-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.app-installation-content {
+  position: relative;
+  z-index: 10;
+}
+
+.app-installation-image {
+  position: relative;
+  z-index: 10;
+}
+
+/* ================================
+   GRID ITEMS
+================================ */
+.grid-item {
+  transition: all 0.3s ease;
+}
+
+/* ================================
+   CONTAINER
+================================ */
+.container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* ================================
+   FEATURES LINE ANIMATION
+================================ */
+#line4 {
+  animation: scroll-horizontal 20s linear infinite;
+}
+
+@keyframes scroll-horizontal {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 640px) {
+  .h2-style {
+    font-size: 2rem;
+  }
+}
