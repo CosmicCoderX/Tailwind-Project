@@ -1,16 +1,28 @@
 /* ================================
-   AOS INIT
+   AOS INIT & GLOBAL SETUP
 ================================ */
-AOS.init({
-    duration: 1000,
-    once: true,
-    offset: 100,
-    easing: 'ease-out'
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if AOS is loaded
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+            easing: 'ease-out'
+        });
+    } else {
+        console.warn('AOS library not loaded');
+    }
+
+    // Initialize other components that might depend on DOM
+    initCustomCursor();
+    initScrollEffects();
 });
 
 /* ================================
    ELEMENT CACHING
 ================================ */
+// Moved inside functions or kept global if used in event listeners that run after load
 const cursor = document.querySelector('.custom-cursor');
 const cursorDot = document.querySelector('.cursor-dot');
 const bentoItems = document.querySelectorAll('.bento-item');
@@ -18,13 +30,23 @@ const navbar = document.getElementById('navbar');
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
-/* ================================
-   DISABLE CURSOR ON TOUCH DEVICES
-================================ */
-if (window.matchMedia('(hover: none)').matches) {
-    cursor?.remove();
-    cursorDot?.remove();
+function initCustomCursor() {
+    /* ================================
+       DISABLE CURSOR ON TOUCH DEVICES
+    ================================ */
+    if (window.matchMedia('(hover: none)').matches) {
+        cursor?.remove();
+        cursorDot?.remove();
+        return;
+    }
+
+    // ... rest of cursor initialization if needed
 }
+
+function initScrollEffects() {
+    // ... Any scroll init logic
+}
+
 
 /* ================================
    CUSTOM CURSOR + PARALLAX (RAF)
